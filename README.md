@@ -4,7 +4,7 @@ This repository contains the codebase for the weakly supervised object detection
 
 ---
 ## 🎥 Demo
-![Demo](demo.gif)
+![Demo](output_motion1.gif)
 
 ## 🏫 School Detection Web App
 
