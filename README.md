@@ -5,7 +5,35 @@ This repository contains the codebase for the weakly supervised object detection
 ---
 ## 🎥 Demo
 ![Demo](output_motion1.gif)
+## 🏗️ Pipeline Overview
 
+This project implements a robust two-step pipeline for building detection in satellite imagery, designed to scale from raw data to high-precision inference.
+
+---
+
+### **Visual Workflow**
+
+![Pipeline Diagram](Diagramme_school_detection_big.jpg)
+*Note: Ensure the image file is located in the same directory as this README.*
+
+---
+
+### **Pipeline Stages**
+
+#### **Step 1: Label Generation (Automated Pre-labeling)**
+The first phase focuses on generating a massive dataset without manual intervention:
+* **Data Collection:** Acquisition of raw satellite tiles.
+* **Segmentation:** Automated mask generation to isolate structures.
+* **Bounding Box Generation:** Conversion of segmentation masks into object detection coordinates ($x, y, w, h$).
+* **Auto-Labeled Data:** Storage of the resulting dataset for large-scale training.
+
+#### **Step 2: Train and Fine-tune**
+The second phase optimizes the model for real-world accuracy:
+* **Initial Training:** The model is pre-trained on the **Auto-Labeled Data** to learn general features.
+* **Fine-tuning:** Specialized training on **Golden Data** (high-quality, manually verified ground truth) to refine detection boundaries.
+* **Individual Models:** Production-ready weights optimized for specific geographic or architectural contexts.
+
+---
 ## 🏫 School Detection Web App
 
 We provide an interactive **Streamlit application** that lets you detect schools on satellite images using our trained models on USA.
