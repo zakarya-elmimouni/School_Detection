@@ -23,8 +23,6 @@ school-detector/
    ├─ satlas/best.pt
    ├─ yolo/best.pt
    ├─ FasterRcnn/best.pt
-   ...
-   └─ big_global_model/best.pt
 ```
 2- Run the App: start the Streamlit server by running:
 ```bash
@@ -33,9 +31,9 @@ streamlit run app.py
 
   
 ##  Project Structure & Key Features
-
-- Automatic data download from Google Static Maps API (requires API key)
-- Outlier cleaning (blur, vegetation, sea, desert)
+-Collect school and non school positions from GIGA website and overpass API
+-Automatic data download from NAIP Imagery 
+- Outlier cleaning (vegetation, sea, desert) (automatic)
 - Bounding box generation using LangSAM segmentation
 - Dataset construction
 - Fine-tuning with high-quality golden data
@@ -54,33 +52,29 @@ pip install -r requirements.txt
 ```
 ### 2. Download satellite images 
 
-⚠️ **We do not share image files directly.**  
-Google's usage policy does not allow redistribution of Static Map images.  
+⚠️ **We do not share image files directly.**    
 To reproduce the dataset:
 
-- Get a [Google Static Maps API key](https://developers.google.com/maps/documentation/maps-static/get-api-key)
-- For each country run the code provided in scripts/download_data_from_static_maps_api.
+- we provide the dataset of the positions in the folder data/usa
+- To download images run the code provided in scripts/download_data.py.
 
 ### 2. Clean and generate automatic labels (bounding boxes) 
 - Clean outlier images (blurred, vegetation, sea, desert) and generate the bounding boxes with segementation using the codes provided in the folder scripts/cleaning_scripts
 ### 3. Prepare dataset (Auto-labeled)
- - Build the  dataset with auto-labeled bounding boxes and apply standard augmentations
+ - Build the  dataset with auto-labeled bounding boxes run the code scripts/clean_data.py
 ### 4. Prepare Golden Dataset
 -The golden dataset consists of manually annotated labels in YOLO format.
 - You will find label files in:
 
  ```bash
-dataset/{country}/manaully_labeled_data/labels
+dataset/{country}/golden/labels
 ```
 To use this dataset:
-- Copy only the matching images from data/{country}/satellite/ (same filenames as labels).
-- Build the golden dataset for each country
+- Copy only the matching images from data/usa/satellite/ (same filenames as labels).
+- Build the golden dataset using the code provided in scripts/build_golden_dataset.py 
 
-### 7. Prepare Global Datasets
-- run the code in scripts/create_global_dataset_with_txt_files.py to create the global golden dataset or the african regional dataset.
-
-### 8. Train and Evaluate YOLO models
-Once the datasets are ready you can lunch the training and evaluation.
+### 8. Train and Evaluate models
+Once the datasets are ready you can lunch the training and evaluation. Training scripts are available in the folder src, three models are available to train YOLO26n and Satals model and Faster rcnn model. the code are available for training on automatic labeled data and also on golden data, we provide also code for finetuning hyperparameters with ECP for the three models. (make sure to modify whathever is needed to adapt to your case).
 ### 9. Hyperparameters (ECP)
 
 We optimized the training hyperparameters using the [ECP algorithm](https://arxiv.org/abs/2502.04290), a black-box optimization method well-suited for tuning costly deep learning models.
