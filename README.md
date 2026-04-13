@@ -108,5 +108,19 @@ Once the datasets are ready you can lunch the training and evaluation. Training 
 We optimized the training hyperparameters using the [ECP algorithm](https://arxiv.org/abs/2502.04290), a black-box optimization method well-suited for tuning costly deep learning models.
 
 All optimal hyperparameter for the Finetuned models with ECP, are stored in the folder: hyperparamaters.
+## Related Repositories
 
+This project builds upon several open-source repositories:
+
+- **Satlas** – Pretrained satellite imagery models  
+  https://github.com/allenai/satlaspretrain_models
+
+- **YOLO** – Object detection framework  
+  https://github.com/ultralytics/ultralytics
+
+- **LangSAM** – Language-guided segmentation using SAM  
+  https://github.com/luca-medeiros/lang-segment-anything
+
+- **Edge Contour Prior (ECP)** – Edge-based contour extraction used for mask refinement  
+  https://github.com/allenai/edge-contour-prior
 
