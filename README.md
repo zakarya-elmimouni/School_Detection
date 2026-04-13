@@ -123,4 +123,6 @@ This project builds upon several open-source repositories:
 
 - **Every Call is Precious: Global Optimization of Black-Box Functions with Unknown Lipschitz Constants** –   
  https://github.com/fouratifares/ECP
+## License
 
+This project is licensed under the MIT License - see the LICENSE file for details.
