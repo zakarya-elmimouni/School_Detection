@@ -121,6 +121,6 @@ This project builds upon several open-source repositories:
 - **LangSAM** – Language-guided segmentation using SAM  
   https://github.com/luca-medeiros/lang-segment-anything
 
-- **Edge Contour Prior (ECP)** – Edge-based contour extraction used for mask refinement  
-  https://github.com/allenai/edge-contour-prior
+- **Every Call is Precious: Global Optimization of Black-Box Functions with Unknown Lipschitz Constants** –   
+ https://github.com/fouratifares/ECP
 
