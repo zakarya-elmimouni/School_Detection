@@ -102,7 +102,7 @@ To use this dataset:
 - Build the golden dataset using the code provided in scripts/build_golden_dataset.py 
 
 ### 5. Train and Evaluate models
-Once the datasets are ready you can lunch the training and evaluation. Training scripts are available in the folder src, three models are available to train YOLO26n and Satals model and Faster rcnn model. the code are available for training on automatic labeled data and also on golden data, we provide also code for finetuning hyperparameters with ECP for the three models. (make sure to modify whathever is needed to adapt to your case).
+Once the datasets are ready you can launch the training and evaluation. Training scripts are available in the folder src, three models are available to train YOLO26n and Satals model and Faster rcnn model. the code are available for training on automatic labeled data and also on golden data, we provide also code for finetuning hyperparameters with ECP for the three models. (make sure to modify whathever is needed to adapt to your case).
 ### 6. Hyperparameters (ECP)
 
 We optimized the training hyperparameters using the [ECP algorithm](https://arxiv.org/abs/2502.04290), a black-box optimization method well-suited for tuning costly deep learning models.
