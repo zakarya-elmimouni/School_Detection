@@ -16,7 +16,7 @@ This project implements a robust two-step pipeline for school detection in satel
 
 ### **Visual Workflow**
 
-![Pipeline Diagram](Diagramme_school_detection_big.png)
+![Pipeline Diagram](whole_pipline.png)
 
 
 ---
