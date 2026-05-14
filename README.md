@@ -90,25 +90,24 @@ pip install -r requirements.txt
 To reproduce the dataset:
 
 - we provide the dataset of the positions in the folder data/usa
-- To download images run the code provided in scripts/download_data.py.
+- To download images run the code provided in scripts/download_usa_data.py.
 
 ### 2. Clean and generate automatic labels (bounding boxes) 
-- Clean outlier images (blurred, vegetation, sea, desert) and generate the bounding boxes with segementation using the codes provided in the folder scripts/cleaning_scripts
+- Clean outlier images (blurred, vegetation, sea, desert) and generate the bounding boxes with segementation using the codes provided in the folder scripts/clean_usa_data.py
 ### 3. Prepare dataset (Auto-labeled)
- - Build the  dataset with auto-labeled bounding boxes run the code scripts/clean_data.py
+ - Build the  dataset with auto-labeled bounding boxes run the code scripts/build_auto_labeled_dataset.py (change the paths as needed)
 ### 4. Prepare Golden Dataset
 -The golden dataset consists of manually annotated labels in YOLO format.
 - You will find label files in:
 
  ```bash
-dataset/{country}/golden/labels
+dataset/usa/golden/labels
 ```
 To use this dataset:
-- Copy only the matching images from data/usa/satellite/ (same filenames as labels).
-- Build the golden dataset using the code provided in scripts/build_golden_dataset.py 
+- Copy only the matching images from data/usa/satellite/ (same filenames as labels) in images files to have an image for each label. (do it for train, test and val) 
 
 ### 5. Train and Evaluate models
-Once the datasets are ready you can launch the training and evaluation. Training scripts are available in the folder src, three models are available to train YOLO26n and Satals model and Faster rcnn model. the code are available for training on automatic labeled data and also on golden data, we provide also code for finetuning hyperparameters with ECP for the three models. (make sure to modify whathever is needed to adapt to your case).
+Once the datasets are ready you can launch the training and evaluation. Training scripts are available in the folder src, three models are available to train YOLO26n and SatlasNet model and Faster R-Cnn model. the code are available for training on automatic labeled data and also on golden data, we provide also code for finetuning hyperparameters with ECP for the three models. (make sure to modify whathever is needed to adapt to your case).
 ### 6. Hyperparameters (ECP)
 
 We optimized the training hyperparameters using the [ECP algorithm](https://arxiv.org/abs/2502.04290), a black-box optimization method well-suited for tuning costly deep learning models.
