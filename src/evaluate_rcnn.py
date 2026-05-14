@@ -15,12 +15,12 @@ from torchvision.ops import box_iou
 # =========================
 # CONFIG
 # =========================
-DATA_ROOT = "dataset/usa/golden_data_tiny_train"
+DATA_ROOT = "golden_data_tiny_train" # chnage as needed
 IMG_DIR_TEST = f"{DATA_ROOT}/images/test"
 LBL_DIR_TEST = f"{DATA_ROOT}/labels/test"
 
-MODEL_PATH = "results/finetuning_rcnn_best_params_tiny_train/best_model_global.pt"
-OUTPUT_TXT = "results/finetuning_rcnn_best_params_tiny_train/best_evaluation.txt"
+MODEL_PATH = "results/finetuning_rcnn_best_params_tiny_train/best_model_global.pt" # change as needed
+OUTPUT_TXT = "results/finetuning_rcnn_best_params_tiny_train/best_evaluation.txt"  # change as needed
 
 NUM_CLASSES = 1
 IMG_SIZE = 500

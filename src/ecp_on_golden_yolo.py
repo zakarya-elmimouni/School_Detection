@@ -5,7 +5,7 @@ import numpy as np
 from ultralytics import YOLO
 
 
-DATA_YAML = 'dataset/usa/golden_data_small_train/data.yaml' # change as needed
+DATA_YAML = 'golden_data_small_train/data.yaml' # change as needed
 
 
 # === Step 1: Clone ECP if not already present ===

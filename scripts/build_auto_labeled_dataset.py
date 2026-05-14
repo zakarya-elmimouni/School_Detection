@@ -3,7 +3,7 @@ import shutil
 import random
 
 # ------------ CONFIGURATION ------------
-school_img_dir = "dataset/usa/satellite/school"
+school_img_dir = "dataset/usa/satellite/school" #change as needed
 school_lbl_dir = "dataset/usa/satellite/school_labels"
 non_school_img_dir = "data/non_school"
 

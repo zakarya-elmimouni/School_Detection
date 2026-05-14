@@ -23,7 +23,7 @@ import satlaspretrain_models as spm
 # =========================
 # Config - MODIFIED
 # =========================
-DATA_ROOT = "dataset/usa/golden_data_tiny_train"
+DATA_ROOT = "dataset/usa/golden_data_tiny_train" # change as needed
 IMG_DIR_TRAIN = f"{DATA_ROOT}/images/train"
 LBL_DIR_TRAIN = f"{DATA_ROOT}/labels/train"
 IMG_DIR_VAL = f"{DATA_ROOT}/images/val"
@@ -51,7 +51,7 @@ STD = [0.229, 0.224, 0.225]
 SEED = 0
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-OUT_DIR = "results/usa/rslt_satlas_on_tiny_train_golden"
+OUT_DIR = "results/usa/rslt_satlas_on_tiny_train_golden" # change as needed
 os.makedirs(OUT_DIR, exist_ok=True)
 BEST_WEIGHTS = os.path.join(OUT_DIR, "best1.pt")
 VAL_PREDS_JSON = os.path.join(OUT_DIR, "best_val_preds1.json")

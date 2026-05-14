@@ -28,7 +28,7 @@ IMG_SIZE=400
 MEAN = [0.485, 0.456, 0.406]
 STD = [0.229, 0.224, 0.225]
 
-OUT_DIR = "results/usa/satlas_tiny_train_ecp"
+OUT_DIR = "results/usa/satlas_tiny_train_ecp"     # change as needed
 BEST_WEIGHTS = os.path.join(OUT_DIR, "best_global_model.pt")
 DATA_ROOT = "dataset/usa/golden_data_tiny_train"
 IMG_DIR_TEST = f"{DATA_ROOT}/images/test"

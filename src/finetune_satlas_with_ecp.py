@@ -26,7 +26,7 @@ from optimizers.ECP import ECP
 # CONFIG
 # ==========================================
 
-DATA_ROOT = "dataset/usa/golden_data_small_train"
+DATA_ROOT = "dataset/usa/golden_data_small_train" # change as needed
 
 IMG_DIR_TRAIN = f"{DATA_ROOT}/images/train"
 LBL_DIR_TRAIN = f"{DATA_ROOT}/labels/train"
@@ -46,9 +46,9 @@ PATIENCE = 3
 
 IOU_THRESHOLD = 0.5
 
-os.makedirs("results/usa/satlas_small_train_ecp/models_trials", exist_ok=True)
+os.makedirs("results/usa/satlas_small_train_ecp/models_trials", exist_ok=True) #change as needed 
 
-CSV_LOG = "results/usa/satlas_small_train_ecp/ecp_small_direct_golden_log.csv"
+CSV_LOG = "results/usa/satlas_small_train_ecp/ecp_small_direct_golden_log.csv" # change as needed
 
 # ==========================================
 # DATASET
@@ -259,7 +259,7 @@ class SatlasObjective:
         self.val_ds=val_ds
 
         self.global_best=0
-        self.global_model_path="results/usa/satlas_tiny_train_ecp/best_global_model.pt"
+        self.global_model_path="results/usa/satlas_tiny_train_ecp/best_global_model.pt" #change as needed
 
         with open(CSV_LOG,"w",newline="") as f:
 
@@ -281,7 +281,7 @@ class SatlasObjective:
 
         trial_name=f"lr{lr:.1e}_wd{wd:.1e}_conf{conf}_nms{nms}"
 
-        trial_model_path=f"results/usa/satlas_tiny_train_ecp/models_trials/{trial_name}.pt"
+        trial_model_path=f"results/usa/satlas_tiny_train_ecp/models_trials/{trial_name}.pt"  # change  as needed 
 
         train_loader=DataLoader(
             self.train_ds,

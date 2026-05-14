@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 # =========================
 # List of Satlas models to evaluate
 MODEL_PATHS = {
-    "with_ecp":   "satlas_smaller_train_ecp/best_test_preds.json", # path tp the json file (change as needed)
-    "without_ecp": "rslt_satlas_on_smaller_train_golden/best_test_preds.json", # path to the json file (change as needed)
+    "with_ecp":   "best_test_preds.json", # path tp the json file (change as needed)
+    "without_ecp": "best_test_preds.json", # path to the json file (change as needed)
 }
 
 LABEL_DIR = "golden_data/labels/test"   # YOLO label directory (change as needed)

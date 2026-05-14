@@ -20,7 +20,7 @@ import satlaspretrain_models as spm
 # =========================
 
 # ---- Golden dataset ----
-DATA_ROOT = "dataset/usa/golden_data_small_train"
+DATA_ROOT = "dataset/usa/golden_data_small_train" # change as needed 
 IMG_DIR_TRAIN = f"{DATA_ROOT}/images/train"
 LBL_DIR_TRAIN = f"{DATA_ROOT}/labels/train"
 IMG_DIR_VAL = f"{DATA_ROOT}/images/val"
@@ -29,7 +29,7 @@ IMG_DIR_TEST = f"{DATA_ROOT}/images/test"
 LBL_DIR_TEST = f"{DATA_ROOT}/labels/test"
 
 # ---- Pretrained weights from auto-labeled training ----
-PRETRAINED_WEIGHTS = "results/usa/rslt_satlas_auto_labeled/best.pt"
+PRETRAINED_WEIGHTS = "results/usa/rslt_satlas_auto_labeled/best.pt" #change as needed
 
 MODEL_ID = "Aerial_SwinB_SI"
 NUM_CLASSES = 1
@@ -44,7 +44,7 @@ IMG_SIZE = 400
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-OUT_DIR = "results/usa/finetune_satlas_pret_auto_on_small_train_golden"
+OUT_DIR = "results/usa/finetune_satlas_pret_auto_on_small_train_golden" # change as needed
 os.makedirs(OUT_DIR, exist_ok=True)
 BEST_WEIGHTS = os.path.join(OUT_DIR, "best_finetuned.pt")
 

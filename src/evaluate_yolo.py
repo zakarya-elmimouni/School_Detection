@@ -17,18 +17,18 @@ model_name = 'yolo26n'
 #OUTPUT_IMG_DIR = "results/rslt_yolo26n_tiny_train_on_golden_best_params/test3/visualizations"
 
 
-MODEL_PATH = "runs/detect/results/usa/rslt_yolo26n_on_small_train_golden_best_params/test3/weights/best.pt"
-DATA_YAML = "dataset/usa/golden_data/data.yaml"
+MODEL_PATH = "path/to/our/model"
+DATA_YAML = "dataset/usa/golden_data/data.yaml" #change as needed
 IMAGES_TEST_DIR = "dataset/usa/golden_data/images/test"
 LABELS_TEST_DIR = "dataset/usa/golden_data/labels/test"
 OUTPUT_METRICS_TXT = "results/rslt_yolo26n_on_small_train_golden_best_params/test3/metrics.txt"
-OUTPUT_IMG_DIR = "results/rslt_yolo26n_on_small_train_golden_best_params/test3/visualizations"
+OUTPUT_IMG_DIR = "results/rslt_yolo26n_on_small_train_golden_best_params/test3/visualizations" # change as needed
 
 
 NUM_IMAGES = 5
 IMAGE_SIZE = 500
 
-os.makedirs("results/rslt_yolo26n_on_small_train_golden_best_params/test3", exist_ok=True)
+os.makedirs("results/rslt_yolo26n_on_small_train_golden_best_params/test3", exist_ok=True) # change as needed
 os.makedirs(OUTPUT_IMG_DIR, exist_ok=True)
 
 model = YOLO(MODEL_PATH)

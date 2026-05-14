@@ -6,10 +6,10 @@ from pathlib import Path
 # =========================
 # CONFIG
 # =========================
-PRED_JSON = "results/usa/satlas_tiny_train_ecp/best_test_preds.json"
-LABEL_DIR = "dataset/usa/golden_data_tiny_train/labels/test"
-OUTPUT_DIR = "results/usa/satlas_tiny_train_ecp/evaluation_satlas"
-OUTPUT_FILE = os.path.join(OUTPUT_DIR, "evaluation_metrics_on_tiny_train_golden.json")
+PRED_JSON = "results/usa/satlas_tiny_train_ecp/best_test_preds.json" # change as needed
+LABEL_DIR = "dataset/usa/golden_data_tiny_train/labels/test"  # change as needed
+OUTPUT_DIR = "results/usa/satlas_tiny_train_ecp/evaluation_satlas"  # change as needed
+OUTPUT_FILE = os.path.join(OUTPUT_DIR, "evaluation_metrics_on_tiny_train_golden.json") # change as needed 
 
 IOU_THRESHOLDS = np.arange(0.5, 1.0, 0.05)
 

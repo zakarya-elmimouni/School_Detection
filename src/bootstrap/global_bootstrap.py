@@ -10,7 +10,7 @@ import shutil
 # Directory containing the .png images
 image_dir = "golden_data/images/test" # change as needed
 # Output file path
-output_txt = "/golden_data/test.txt" # change as needed
+output_txt = "golden_data/test.txt" # change as needed
 
 # List all .png files in the folder
 png_files = [f for f in os.listdir(image_dir) if f.endswith(".png")]

@@ -15,18 +15,18 @@ import matplotlib.pyplot as plt
 # CONFIG
 # =========================================================
 
-DATA_ROOT = "dataset/usa/golden_data_small_train"
+DATA_ROOT = "golden_data_small_train" # change as needed
 
-IMG_DIR_TRAIN = f"{DATA_ROOT}/images/train"
+IMG_DIR_TRAIN = f"{DATA_ROOT}/images/train"  # change as needed
 LBL_DIR_TRAIN = f"{DATA_ROOT}/labels/train"
 IMG_DIR_VAL   = f"{DATA_ROOT}/images/val"
 LBL_DIR_VAL   = f"{DATA_ROOT}/labels/val"
 IMG_DIR_TEST  = f"{DATA_ROOT}/images/test"
 LBL_DIR_TEST  = f"{DATA_ROOT}/labels/test"
 
-PRETRAINED_MODEL_PATH = "results/rslt_faster_rcnn_on_auto_labeled/best_fasterrcnn.pt"
+PRETRAINED_MODEL_PATH = "results/rslt_faster_rcnn_on_auto_labeled/best_fasterrcnn.pt" # change as needed
 
-SAVE_DIR = "results/finetune_faster_rcnn_on_small_train_golden"
+SAVE_DIR = "results/finetune_faster_rcnn_on_small_train_golden" # change as needed
 os.makedirs(SAVE_DIR, exist_ok=True)
 
 BEST_MODEL_PATH = os.path.join(SAVE_DIR, "best_finetuned_model.pt")

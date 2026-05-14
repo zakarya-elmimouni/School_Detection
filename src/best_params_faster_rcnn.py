@@ -24,8 +24,8 @@ from optimizers.ECP import ECP
 # =========================================================
 # CONFIG
 # =========================================================
-DATA_ROOT = "dataset/usa/golden_data_tiny_train"
-PRETRAINED_MODEL_PATH = "results/rslt_faster_rcnn_on_auto_labeled/best_fasterrcnn_1.pt"
+DATA_ROOT = "golden_data_tiny_train" # change as needed
+PRETRAINED_MODEL_PATH = "best_fasterrcnn_1.pt" # change as needed 
 
 IMG_SIZE = 500
 BATCH_SIZE = 4
@@ -214,9 +214,9 @@ class RCNNObjective:
         ])
 
         self.dimensions = self.bounds.shape[0]
-        self.log_path = "results/finetuning_rcnn_best_params_tiny_train/ecp_faster_rcnn_tiny_train_log.csv"
+        self.log_path = "results/ecp_faster_rcnn_tiny_train_log.csv" # change as needed
 
-        os.makedirs("results/finetuning_rcnn_best_params_tiny_train/models_trials", exist_ok=True)
+        os.makedirs("results/models_trials", exist_ok=True) # change as needed
 
         with open(self.log_path, "w", newline="") as f:
             writer = csv.writer(f)
@@ -232,7 +232,7 @@ class RCNNObjective:
                                      shuffle=False, collate_fn=collate_fn)
 
         self.global_best_precision = 0.0
-        self.global_best_model_path = "results/finetuning_rcnn_best_params_tiny_train/best_model_global.pt"
+        self.global_best_model_path = "results/best_model_global.pt" # change as needed
 
         self.PATIENCE = 3  # early stopping patience
 
@@ -245,7 +245,7 @@ class RCNNObjective:
             f"_rpn{rpn_nms:.2f}_sc{score_thresh:.2f}_nms{box_nms:.2f}"
         )
 
-        trial_model_path = f"results/finetuning_rcnn_best_params_tiny_train/models_trials/{trial_name}.pt"
+        trial_model_path = f"results/models_trials/{trial_name}.pt" # change as needed
 
         print(f"\n=== Trial: {trial_name} ===")
 

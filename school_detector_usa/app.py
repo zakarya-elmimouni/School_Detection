@@ -9,15 +9,15 @@ import streamlit as st
 from ultralytics import YOLO
 from typing import Optional, Tuple
 
-# Import pour Faster R-CNN
+# Import  Faster R-CNN
 from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 
-# Import pour Satlas (Assurez-vous que satlaspretrain_models est installé)
+# Import  Satlas 
 try:
     import satlaspretrain_models as spm
 except ImportError:
-    st.error("Le package 'satlaspretrain_models' est manquant. Installez-le pour utiliser le modèle Satlas.")
+    st.error("The package 'satlaspretrain_models' is missing. donwload it to use Satlasnet.")
 
 # ------------------------------
 # Configuration
@@ -31,11 +31,11 @@ MODELS_USA = {
 }
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-IMG_SIZE = 500 # Taille standardisée pour l'inférence
-NUM_CLASSES = 1 # School uniquement
+IMG_SIZE = 500 # for inference
+NUM_CLASSES = 1 # School 
 
 # ------------------------------
-# Chargeurs de Modèles (Cached)
+# Charger of models (Cached)
 # ------------------------------
 @st.cache_resource
 def load_yolo(path):
@@ -54,7 +54,7 @@ def load_rcnn(path):
 @st.cache_resource
 def load_satlas(path):
     weights = spm.Weights()
-    # On utilise Aerial_SwinB_SI comme dans votre script de prédiction
+    # we use Aerial_SwinB_SI 
     model = weights.get_pretrained_model(
         "Aerial_SwinB_SI", fpn=True, head=spm.Head.DETECT, num_categories=NUM_CLASSES + 1, device=DEVICE
     )
@@ -64,14 +64,14 @@ def load_satlas(path):
     return model
 
 # ------------------------------
-# Fonctions de Prétraitement & Dessin
+# Fonctions 
 # ------------------------------
 def preprocess_image(pil_img: Image.Image):
     """Redimensionne et convertit l'image en tenseur pour R-CNN et Satlas."""
     img_resized = pil_img.resize((IMG_SIZE, IMG_SIZE))
     img_array = np.array(img_resized).astype(np.float32) / 255.0
     
-    # Normalisation standard (ImageNet) souvent utilisée par R-CNN et Satlas
+    # Normalisation standard (ImageNet)  used for R-CNN et Satlas
     mean = np.array([0.485, 0.456, 0.406])
     std = np.array([0.229, 0.224, 0.225])
     img_array = (img_array - mean) / std
@@ -84,23 +84,23 @@ def draw_boxes(img_rgb: np.ndarray, boxes: np.ndarray, scores: np.ndarray, thres
     for i, box in enumerate(boxes):
         if scores[i] >= threshold:
             x1, y1, x2, y2 = map(int, box)
-            cv2.rectangle(annotated, (x1, y1), (x2, y2), (255, 0, 0), 2) # Bleu pour changer un peu
+            cv2.rectangle(annotated, (x1, y1), (x2, y2), (255, 0, 0), 2) 
             label = f"School: {scores[i]:.2f}"
             cv2.putText(annotated, label, (x1, max(0, y1 - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
     return annotated
 
 # ------------------------------
-# Inférence par Architecture
+# inference by Architecture
 # ------------------------------
 def run_inference(model_info, pil_img, conf_th):
     m_type = model_info["type"]
     m_path = model_info["path"]
     
     if not os.path.exists(m_path):
-        st.error(f"Fichier de poids introuvable : {m_path}")
+        st.error(f"File of weights non found : {m_path}")
         return None, False, [], []
 
-    # 1. Inférence YOLO
+    # 1. Inference YOLO
     if m_type == "yolo":
         model = load_yolo(m_path)
         img_input = np.array(pil_img.resize((IMG_SIZE, IMG_SIZE)))
@@ -108,7 +108,7 @@ def run_inference(model_info, pil_img, conf_th):
         boxes = results.boxes.xyxy.cpu().numpy()
         scores = results.boxes.conf.cpu().numpy()
         
-    # 2. Inférence Faster R-CNN
+    # 2. Inference Faster R-CNN
     elif m_type == "rcnn":
         model = load_rcnn(m_path)
         img_resized, tensor = preprocess_image(pil_img)
@@ -118,7 +118,7 @@ def run_inference(model_info, pil_img, conf_th):
         boxes = output["boxes"].cpu().numpy()
         scores = output["scores"].cpu().numpy()
 
-    # 3. Inférence Satlas
+    # 3. Inference Satlas
     elif m_type == "satlas":
         model = load_satlas(m_path)
         img_resized, tensor = preprocess_image(pil_img)
@@ -126,7 +126,7 @@ def run_inference(model_info, pil_img, conf_th):
         with torch.no_grad():
             preds = model(tensor)
             if isinstance(preds, tuple): preds = preds[0]
-            # Satlas renvoie souvent une liste de dictionnaires pour le batch
+            
             pred = preds[0] 
         boxes = pred["boxes"].cpu().numpy()
         scores = pred["scores"].cpu().numpy()
@@ -145,41 +145,41 @@ def run_inference(model_info, pil_img, conf_th):
 # Interface UI
 # ------------------------------
 st.title("🇺🇸 School Detection - USA Special Edition")
-st.markdown("Cette application compare les performances de **YOLOv8**, **Faster R-CNN** et **Satlas Pretrain** sur le territoire américain.")
+st.markdown("This application compare the performances of **YOLOv26**, **Faster R-CNN** et **SatlasNet Pretrain** over USA.")
 
 with st.sidebar:
-    st.header("Paramètres USA")
-    model_name = st.selectbox("Choisir l'architecture", list(MODELS_USA.keys()))
-    conf_th = st.slider("Seuil de confiance", 0.01, 0.95, 0.25, 0.05)
+    st.header("Parameters USA")
+    model_name = st.selectbox("choose architecture", list(MODELS_USA.keys()))
+    conf_th = st.slider("Confidence Threshold", 0.01, 0.95, 0.25, 0.05)
     st.info(f"Mode : {MODELS_USA[model_name]['type'].upper()}")
 
-uploaded_file = st.file_uploader("Charger une image satellite", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Charge image satellite", type=["jpg", "jpeg", "png"])
 
 if uploaded_file:
     img = Image.open(uploaded_file).convert("RGB")
     
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("Entrée (Originale)")
+        st.subheader("Input (Originale)")
         st.image(img, use_container_width=True)
     
     with col2:
-        st.subheader("Détection")
-        if st.button("Lancer l'analyse 🚀"):
-            with st.spinner(f"Calcul en cours avec {model_name}..."):
+        st.subheader("Detection")
+        if st.button("Lanuch analysis 🚀"):
+            with st.spinner(f"Computing with {model_name}..."):
                 result_img, found, b, s = run_inference(MODELS_USA[model_name], img, conf_th)
                 
                 if result_img is not None:
                     st.image(result_img, use_container_width=True)
                     if found:
-                        st.success(f"✅ {len(b)} école(s) détectée(s) !")
+                        st.success(f"✅ {len(b)} school(s) detected !")
                     else:
-                        st.warning("⚠️ Aucune école détectée avec ce seuil.")
+                        st.warning("⚠️ no school detected with this threshold.")
                     
-                    # Bouton de téléchargement
+                    # 
                     is_success, buffer = cv2.imencode(".png", cv2.cvtColor(result_img, cv2.COLOR_RGB2BGR))
                     st.download_button(
-                        label="Télécharger le résultat",
+                        label="download the result",
                         data=buffer.tobytes(),
                         file_name="detection_usa.png",
                         mime="image/png"

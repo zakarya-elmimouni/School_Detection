@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 # =========================
 # CONFIG
 # =========================
-DATA_ROOT = "dataset/usa/golden_data_tiny_train"
+DATA_ROOT = "dataset/usa/golden_data_tiny_train" # chnage as needed
 
 IMG_DIR_TRAIN = f"{DATA_ROOT}/images/train"
 LBL_DIR_TRAIN = f"{DATA_ROOT}/labels/train"
@@ -29,10 +29,10 @@ LBL_DIR_TEST   = f"{DATA_ROOT}/labels/test"
 
 
 PATIENCE = 8
-BEST_MODEL_PATH = "results/rslt_faster_rcnn_on_tiny_train_golden/best_fasterrcnn.pt"
-LOSS_PLOT_PATH =  "results/rslt_faster_rcnn_on_tiny_train_golden/loss_curves.png"
+BEST_MODEL_PATH = "results/rslt_faster_rcnn_on_tiny_train_golden/best_fasterrcnn.pt" #change as needed
+LOSS_PLOT_PATH =  "results/rslt_faster_rcnn_on_tiny_train_golden/loss_curves.png" # change as needed
 
-os.makedirs("results/rslt_faster_rcnn_on_tiny_train_golden", exist_ok=True)
+os.makedirs("results/rslt_faster_rcnn_on_tiny_train_golden", exist_ok=True)# change as needed 
 
 NUM_CLASSES = 1  # school
 BATCH_SIZE = 4
